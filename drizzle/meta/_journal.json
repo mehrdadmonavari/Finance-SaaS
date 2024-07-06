@@ -15,6 +15,13 @@
       "when": 1720023581218,
       "tag": "0001_sweet_iceman",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1720263546211,
+      "tag": "0002_faulty_piledriver",
+      "breakpoints": true
     }
   ]
 }
