@@ -10,6 +10,8 @@ import { Trash } from "lucide-react";
 import { Select } from "@/app/(dashboard)/_components/select";
 import { DatePicker } from "@/app/(dashboard)/_components/date-picker";
 import { Textarea } from "@/components/ui/textarea";
+import { AmountInput } from "@/app/(dashboard)/_components/amount-input";
+import { convertAmountToMiliunits } from "@/lib/utils";
 
 const formSchema = z.object({
    date: z.coerce.date(),
@@ -54,8 +56,13 @@ const TransactionForm = ({
    });
 
    const handleSubmit = (values: FormValues) => {
-      // onSubmit(values);
-      console.log(values);
+      const amount = parseFloat(values.amount);
+      const amountInMiliunits = convertAmountToMiliunits(amount);
+
+      onSubmit({
+         ...values,
+         amount: amountInMiliunits,
+      });
    };
 
    const handleDelete = () => {
@@ -70,6 +77,7 @@ const TransactionForm = ({
                control={form.control}
                render={({ field }) => (
                   <FormItem>
+                     <FormLabel>Date</FormLabel>
                      <FormControl>
                         <DatePicker
                            value={field.value}
@@ -131,6 +139,18 @@ const TransactionForm = ({
                )}
             />
             <FormField
+               name="amount"
+               control={form.control}
+               render={({ field }) => (
+                  <FormItem>
+                     <FormLabel>Amount</FormLabel>
+                     <FormControl>
+                        <AmountInput {...field} disabled={disabled} placeholder="0.00" />
+                     </FormControl>
+                  </FormItem>
+               )}
+            />
+            <FormField
                name="notes"
                control={form.control}
                render={({ field }) => (
@@ -148,7 +168,7 @@ const TransactionForm = ({
                )}
             />
             <Button className="w-full" disabled={disabled}>
-               {id ? "Save changes" : "Create account"}
+               {id ? "Save changes" : "Create transaction"}
             </Button>
             {!!id && (
                <Button
@@ -158,7 +178,7 @@ const TransactionForm = ({
                   className="w-full"
                   variant={"outline"}>
                   <Trash className="size-4 mr-2" />
-                  Delete account
+                  Delete transaction
                </Button>
             )}
          </form>
