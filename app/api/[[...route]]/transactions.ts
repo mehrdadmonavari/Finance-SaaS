@@ -63,6 +63,7 @@ const app = new Hono()
                )
             )
             .orderBy(desc(transactions.date));
+
          return c.json({ data });
       }
    )
