@@ -85,6 +85,8 @@ export const ImportCard: React.FC<ImportCardProps> = ({ data, onCancel, onSubmit
          amount: convertAmountToMiliunits(parseFloat(item.amount)),
          date: format(parse(item.date, dateFormat, new Date()), outputFormat),
       }));
+
+      onSubmit(formattedData);
    };
 
    return (
