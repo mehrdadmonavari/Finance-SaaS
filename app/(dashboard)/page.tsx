@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { DataGrid } from "./_components/data-grid";
-import { DataCharts } from "./_components/dataCharts";
+import { DataCharts } from "./_components/data-charts";
 
 const DashboardPage = () => {
    return (
