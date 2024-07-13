@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import { cors } from 'hono/cors'
+import { cors } from "hono/cors";
 import { handle } from "hono/vercel";
 import accounts from "./accounts";
 import categories from "./categories";
@@ -8,7 +8,12 @@ import summary from "./summary";
 
 export const runtime = "edge";
 
-const app = new Hono().basePath("/api").use("/api/*", cors());
+const app = new Hono().basePath("/api").use(
+   "/api/*",
+   cors({
+      origin: process.env.NEXT_CLIENT_ORIGIN!,
+   })
+);
 
 const routes = app
    .route("/summary", summary)
