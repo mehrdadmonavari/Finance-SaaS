@@ -7,7 +7,6 @@ import { differenceInDays, parse, subDays } from "date-fns";
 import { and, desc, eq, gte, lt, lte, sql, sum } from "drizzle-orm";
 import { accounts, categories, transactions } from "@/db/schema";
 import { calculatePercentageChange, fillMissingDays } from "@/lib/utils";
-import { date } from "drizzle-orm/mysql-core";
 
 const app = new Hono().get(
    "/",
@@ -31,9 +30,7 @@ const app = new Hono().get(
       const defaultTo = new Date();
       const defaultFrom = subDays(defaultTo, 30);
 
-      const startDate = from
-         ? parse(from, "yyyy-MM-dd", new Date())
-         : defaultFrom;
+      const startDate = from ? parse(from, "yyyy-MM-dd", new Date()) : defaultFrom;
 
       const endDate = to ? parse(to, "yyyy-MM-dd", new Date()) : defaultTo;
 
