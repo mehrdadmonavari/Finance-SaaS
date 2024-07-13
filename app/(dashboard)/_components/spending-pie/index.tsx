@@ -30,7 +30,7 @@ export const SpendingPie: React.FC<SpendingPieProps> = ({ data = [] }) => {
    return (
       <Card className="border-none drop-shadow-sm">
          <CardHeader className="flex lg:flex-row lg:items-center justify-between space-y-2 lg:space-y-0">
-            <CardTitle className="text-xl line-clamp-1">Transactions</CardTitle>
+            <CardTitle className="text-xl line-clamp-1">Categories</CardTitle>
             <Select defaultValue={chartType} onValueChange={onTypeChange}>
                <SelectTrigger className="lg:w-auto h-9 rounded-md px-3">
                   <SelectValue placeholder="Chart type" />

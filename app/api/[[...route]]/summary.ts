@@ -32,7 +32,7 @@ const app = new Hono().get(
       const defaultFrom = subDays(defaultTo, 30);
 
       const startDate = from
-         ? parse(from, "yyyy-MM-dd HH:mm:ss", new Date())
+         ? parse(from, "yyyy-MM-dd", new Date())
          : defaultFrom;
 
       const endDate = to ? parse(to, "yyyy-MM-dd", new Date()) : defaultTo;
@@ -67,7 +67,11 @@ const app = new Hono().get(
       }
 
       const [currentPeriod] = await fetchFinancialData(auth?.userId!, startDate, endDate);
-      const [lastPeriod] = await fetchFinancialData(auth?.userId!, lastPeriodStart, lastPeriodEnd);
+      const [lastPeriod] = await fetchFinancialData(
+         auth?.userId!,
+         lastPeriodStart,
+         lastPeriodEnd
+      );
       const incomeChange = calculatePercentageChange(
          currentPeriod.income,
          lastPeriod.income

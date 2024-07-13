@@ -68,3 +68,5 @@ export const AmountInput: React.FC<AmountInputProps> = React.forwardRef(
       );
    }
 );
+
+AmountInput.displayName = "AmountInput";
