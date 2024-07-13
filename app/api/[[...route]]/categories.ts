@@ -22,11 +22,7 @@ const app = new Hono()
          })
          .from(categories)
          .where(eq(categories.userId, auth.userId));
-      return c.json({ data }, 200, {
-         "Access-Control-Allow-Methods": `${process.env.ALLOWED_METHODS}`,
-         "Access-Control-Allow-Headers": `${process.env.ALLOWED_HEADERS}`,
-         "Access-Control-Allow-Origin": `*`,
-      });
+      return c.json({ data });
    })
    .get(
       "/:id",
@@ -61,11 +57,7 @@ const app = new Hono()
             return c.json({ error: "Not found" }, 404);
          }
 
-         return c.json({ data }, 200, {
-            "Access-Control-Allow-Methods": `${process.env.ALLOWED_METHODS}`,
-            "Access-Control-Allow-Headers": `${process.env.ALLOWED_HEADERS}`,
-            "Access-Control-Allow-Origin": `*`,
-         });
+         return c.json({ data });
       }
    )
    .post(
